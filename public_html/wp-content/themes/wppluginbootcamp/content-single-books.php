@@ -24,7 +24,8 @@
             </div><!-- .post-thumbnail -->
             <div class="book-details">
                 <strong>Genres:</strong> <?php the_terms($post->ID,'genres');?><br/>
-                <strong>Author:</strong> <?php echo get_post_meta( get_the_ID(), '_wppb_author', true ); ?>
+                <strong>Author:</strong> <?php echo get_post_meta( get_the_ID(), '_wppb_author', true ); ?><br/>
+                <strong>Purchase:</strong> <a href="<?php echo get_post_meta(get_the_ID(),'_wppb_amazon', true);?>" title="Amazon">Amazon</a>
             </div>
         </div>
 

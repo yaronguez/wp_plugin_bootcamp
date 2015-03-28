@@ -20,7 +20,8 @@
             <h2><a href="<?php the_permalink();?>" title="<?php the_title();?>"><?php the_title();?></a></h2>
             <div class="book-details">
                  <?php the_terms($post->ID,'genres');?><br/>
-                <strong>Author:</strong> <?php echo get_post_meta( get_the_ID(), '_wppb_author', true ); ?>
+                <strong>Author:</strong> <?php echo get_post_meta( get_the_ID(), '_wppb_author', true ); ?><br/>
+                <strong>Purchase:</strong> <a href="<?php echo get_post_meta(get_the_ID(),'_wppb_amazon', true);?>" title="Amazon">Amazon</a>
             </div>
         </div>
     </div>

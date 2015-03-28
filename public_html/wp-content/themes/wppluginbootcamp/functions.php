@@ -99,9 +99,7 @@ function wppb_metaboxes() {
         'object_types'  => array( 'books', ), // Post type
         'context'       => 'normal',
         'priority'      => 'high',
-        'show_names'    => true, // Show field names on the left
-        // 'cmb_styles' => false, // false to disable the CMB stylesheet
-        // 'closed'     => true, // Keep the metabox closed by default
+        'show_names'    => true // Show field names on the left
     ) );
 
     // Regular text field
@@ -132,16 +130,14 @@ function wppb_book_shortcode( $atts ) {
         return;
     }
 
-
     $query = new WP_Query(array(
         'post_type' => 'books',
         'name'=>$a['slug']
     ));
 
     if(!$query->have_posts()){
-        return 'no posts';
+        return 'Book not found';
     }
-
 
     ob_start();
     while($query->have_posts()): $query->the_post();
