@@ -11,3 +11,68 @@
  Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
  Text Domain:  twenty-fifteen-child
 */
+
+.book-header {
+    padding: 30px 0 0px 30px;
+}
+
+h1.book-title {
+    font-size: 42px;
+    padding: 0 0 20px;
+}
+
+.book-wrapper .book-meta {
+    float: left;
+}
+
+.book-wrapper .book-meta .book-image {
+    border-radius: 20px;
+    border-right: 5px dotted #666;
+    margin: 0 30px 15px 30px;
+    padding: 15px 15px 15px 0;
+}
+
+.book-wrapper .book-meta .book-image img {
+    box-shadow: 2px 2px 4px 2px;
+}
+
+.book-wrapper .book-meta .book-details {
+    border: 2px dotted #666;
+    border-radius: 5px;
+    color: #000;
+    font-size: 14px;
+    margin: 0 30px;
+    padding: 10px;
+}
+
+.book-content {
+    padding: 0 10% 10%;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-wrap: break-word;
+}
+
+.book-wrapper-archive {
+    overflow: auto;
+    zoom: 1;
+    position: relative;
+}
+
+.book-wrapper-archive .book-image {
+    float: left;
+    margin: 10px 30px 10px 10px
+}
+
+.book-header-archive {
+    float: left;
+}
+
+.book-header-archive > h2 {
+    font-size: 36px;
+
+}
+
+.book-header-archive .book-details, .book-header-archive .book-details > a {
+    color: #666;
+}
