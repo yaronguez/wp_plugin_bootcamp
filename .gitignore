@@ -1,0 +1,10 @@
+.idea/
+wp-config.php
+w3tc-cache/
+cache
+WPFMP_DATA/
+pgcache/
+wp-content/w3tc/
+.DS_Store
+wp-content/w3tc-config/master.php
+.htaccess
