@@ -35,10 +35,10 @@ This is the starting point of the tutorial.  We have a 2015 child theme with all
  * ````content-archive-books.php````
  * ````taxonomy-genres.php````
 
- ### Step 2
- **Branch:** step_2
- This branch uses an Object Oriented Design approach to a plugin.  It utilizes the WordPress Plugin Boilerplate 3, http://wppb.io/,
- by Tom McFarlin and company.  The custom post type, taxonomy, shortcode and metabox have been moved into the plugin under the
- admin and public classes. The styles have been moved into the public stylesheet as well.  The template files are still in the
- theme folder.
+### Step 2
+**Branch:** step_2
+This branch uses an Object Oriented Design approach to a plugin.  It utilizes the WordPress Plugin Boilerplate 3, http://wppb.io/,
+by Tom McFarlin and company.  The custom post type, taxonomy, shortcode and metabox have been moved into the plugin under the
+admin and public classes. The styles have been moved into the public stylesheet as well.  The template files are still in the
+theme folder.
 
