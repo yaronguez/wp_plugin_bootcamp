@@ -33,7 +33,7 @@ This is the starting point of the tutorial.  We have a 2015 child theme with all
  * ````content-archive-books.php````
  * ````taxonomy-genres.php````
 
-### Step 0
+### Step 1
 **Branch:** step_1  
 This step takes the 2015 child theme functions and templates and breaks them out into a simple plugin using a similar structure to [Bill Erickson's Core Functionality plugin](https://github.com/billerickson/Core-Functionality). 
 
