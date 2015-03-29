@@ -14,6 +14,9 @@ It will show you how to migrate functionality from a WordPress Theme into a Word
  * Update the SALT
  * Optional, recommended for running local on OS X, add ````define('FS_METHOD', 'direct');````
 * Set up your local server (XAMPP, DesktopServer, MAMP etc)
+* Login with
+ * username: admin-wppb
+ * password: Va3Ax3KBp3
 
 ## Steps
 ### Step 0
