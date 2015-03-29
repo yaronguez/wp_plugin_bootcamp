@@ -15,7 +15,7 @@ get_header(); ?>
         while ( have_posts() ) : the_post();
 
 
-            WP_Plugin_BootCamp_Public::get_template_part( 'content', 'single-books' );
+            WP_Plugin_BootCamp::get_template_part( 'content', 'single-books' );
 
             // If comments are open or we have at least one comment, load up the comment template.
             if ( comments_open() || get_comments_number() ) :
