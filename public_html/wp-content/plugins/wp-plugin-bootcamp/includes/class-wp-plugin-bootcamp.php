@@ -124,6 +124,11 @@ class WP_Plugin_BootCamp {
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/cmb2/init.php';
 
+        /**
+         * Load CMB2 Admin Settings class
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wp-plugin-bootcamp-admin-settings.php';
+
 		$this->loader = new WP_Plugin_BootCamp_Loader();
 
 	}
@@ -161,7 +166,11 @@ class WP_Plugin_BootCamp {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action('cmb2_init', $plugin_admin, 'register_metaboxes');
 
+        $plugin_admin_settings = WP_Plugin_BootCamp_Admin_Settings::get_instance();
 
+        $this->loader->add_action( 'admin_init', $plugin_admin_settings, 'init' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin_settings, 'add_options_page' );
+        $this->loader->add_action( 'cmb2_init', $plugin_admin_settings, 'add_options_page_metabox' );
 	}
 
 	/**
@@ -224,5 +233,44 @@ class WP_Plugin_BootCamp {
 	public function get_version() {
 		return $this->version;
 	}
+
+    /**
+     * STATIC HELPER FUNCTIONS
+     * */
+
+    public static function get_option($option){
+        return cmb2_get_option('wppb_options',$option);
+    }
+
+    /**
+     * Get template part if exists in theme, or from partials otherwise.
+     * @param $slug
+     * @param null $name
+     */
+    public static function get_template_part($slug, $name = null){
+        $template = '';
+
+        // Name provided
+        if ( $name ) {
+            // Check theme folder
+            $template = locate_template( array( "{$slug}-{$name}.php" ) );
+            if(! $template && file_exists(plugin_dir_path(dirname( __FILE__ )) . "/public/partials/{$slug}-{$name}.php")){
+                // Use partials version
+                $template = plugin_dir_path(dirname( __FILE__ )) . "/public/partials/{$slug}-{$name}.php";
+            }
+        } else {
+            // Check theme folder
+            $template = locate_template(array("{$slug}.php"));
+            if(! $template && file_exists(plugin_dir_path(dirname( __FILE__ )) . "/public/partials/{$slug}.php")){
+                // Use partials version
+                $template = plugin_dir_path(dirname( __FILE__ )) . "/public/partials/{$slug}.php";
+            }
+        }
+
+        if ( $template ) {
+            load_template( $template, false );
+        }
+    }
+
 
 }

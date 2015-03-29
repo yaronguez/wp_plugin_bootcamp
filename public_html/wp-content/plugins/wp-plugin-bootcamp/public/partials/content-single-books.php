@@ -18,7 +18,7 @@
 
     <div class="book-wrapper">
         <div class="book-meta">
-            <div class="book-image">
+            <div class="book-image" style="border-color: <?php echo WP_Plugin_BootCamp::get_option('book_color');?>">
                 <?php the_post_thumbnail(); ?>
             </div><!-- .post-thumbnail -->
             <div class="book-details">

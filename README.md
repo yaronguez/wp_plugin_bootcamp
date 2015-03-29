@@ -43,7 +43,7 @@ admin and public classes. The styles have been moved into the public stylesheet 
 theme folder.
 
 ### Step 3
-**Branch:** step_3  
+**Branch:** step_3
 This branch migrates the template files ````single-books.php```` and ````archive-books.php```` into the plugin and out of the theme
 while allowing theme authors and users to override this markup to better suit their theme by copying the templates back into
 their theme folder.  It then replaces the built in ````get_template_part()```` method with one that checks the plugin first

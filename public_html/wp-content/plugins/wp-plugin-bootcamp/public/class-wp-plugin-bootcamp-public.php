@@ -256,34 +256,4 @@ class WP_Plugin_BootCamp_Public {
         return $archive_template;
     }
 
-    /**
-     * Get template part if exists in theme, or from partials otherwise.
-     * @param $slug
-     * @param null $name
-     */
-    public static function get_template_part($slug, $name = null){
-        $template = '';
-
-        // Name provided
-        if ( $name ) {
-            // Check theme folder
-            $template = locate_template( array( "{$slug}-{$name}.php" ) );
-            if(! $template && file_exists(dirname( __FILE__ ) . "/partials/{$slug}-{$name}.php")){
-                // Use partials version
-                $template = dirname( __FILE__ ) . "/partials/{$slug}-{$name}.php";
-            }
-        } else {
-            // Check theme folder
-            $template = locate_template(array("{$slug}.php"));
-            if(! $template && file_exists(dirname( __FILE__ ) . "/partials/{$slug}.php")){
-                // Use partials version
-                $template = dirname( __FILE__ ) . "/partials/{$slug}.php";
-            }
-        }
-
-        if ( $template ) {
-            load_template( $template, false );
-        }
-    }
-
 }
