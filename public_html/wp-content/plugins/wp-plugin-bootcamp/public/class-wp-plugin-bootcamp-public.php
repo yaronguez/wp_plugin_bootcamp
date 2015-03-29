@@ -137,6 +137,9 @@ class WP_Plugin_BootCamp_Public {
         register_post_type( 'books', $args );
     }
 
+    /**
+     * Register Taxonomies
+     */
     public function register_taxonomies(){
         $labels = array(
             'name' => _x( 'Genres', 'genres' ),
@@ -169,6 +172,11 @@ class WP_Plugin_BootCamp_Public {
         register_taxonomy( 'genres', array('books'), $args );
     }
 
+    /**
+     * Display Book Shortcode
+     * @param $atts
+     * @return string|void
+     */
     public function display_book_shortcode( $atts ) {
         $a = shortcode_atts( array(
             'slug' => false
@@ -198,6 +206,84 @@ class WP_Plugin_BootCamp_Public {
 
     public function register_shortcodes(){
         add_shortcode( 'display_book', array($this, 'display_book_shortcode' ));
+    }
+
+    /**
+     * Override the single template for transcription jobs
+     * @param $single_template
+     * @return string
+     */
+    public function single_template($single_template)
+    {
+        global $post;
+
+        if ($post->post_type == 'books') {
+            if(file_exists(get_stylesheet_directory() . '/single-books.php')) {
+                $single_template = get_stylesheet_directory() . '/single-books.php';
+            }
+            else{
+                $single_template = dirname( __FILE__ ) . '/partials/single-books.php';
+            }
+        }
+        return $single_template;
+    }
+
+    /**
+     * Override the archive template for transcription jobs
+     * @param $archive_template
+     * @return string
+     */
+    public function archive_template($archive_template)
+    {
+        global $post;
+
+        if ( is_post_type_archive ( 'books' ) ) {
+            if(file_exists(get_stylesheet_directory() . '/archive-books.php')){
+                $archive_template = get_stylesheet_directory() . '/archive-books.php';
+            }
+            else{
+                $archive_template = dirname( __FILE__ ) . '/partials/archive-books.php';
+            }
+        }
+        else if(is_tax('genres')){
+            if(file_exists(get_stylesheet_directory() . '/taxonomy-genres.php')){
+                $archive_template = get_stylesheet_directory() . '/taxonomy-genres.php';
+            }
+            else{
+                $archive_template = dirname( __FILE__ ) . '/partials/taxonomy-genres.php';
+            }
+        }
+        return $archive_template;
+    }
+
+    /**
+     * Get template part if exists in theme, or from partials otherwise.
+     * @param $slug
+     * @param null $name
+     */
+    public static function get_template_part($slug, $name = null){
+        $template = '';
+
+        // Name provided
+        if ( $name ) {
+            // Check theme folder
+            $template = locate_template( array( "{$slug}-{$name}.php" ) );
+            if(! $template && file_exists(dirname( __FILE__ ) . "/partials/{$slug}-{$name}.php")){
+                // Use partials version
+                $template = dirname( __FILE__ ) . "/partials/{$slug}-{$name}.php";
+            }
+        } else {
+            // Check theme folder
+            $template = locate_template(array("{$slug}.php"));
+            if(! $template && file_exists(dirname( __FILE__ ) . "/partials/{$slug}.php")){
+                // Use partials version
+                $template = dirname( __FILE__ ) . "/partials/{$slug}.php";
+            }
+        }
+
+        if ( $template ) {
+            load_template( $template, false );
+        }
     }
 
 }

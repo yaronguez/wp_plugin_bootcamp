@@ -180,6 +180,8 @@ class WP_Plugin_BootCamp {
         $this->loader->add_action('init', $plugin_public, 'register_post_types');
         $this->loader->add_action('init', $plugin_public, 'register_taxonomies');
         $this->loader->add_action('init', $plugin_public, 'register_shortcodes');
+        $this->loader->add_filter('single_template', $plugin_public, 'single_template'); // Load custom single template for books
+        $this->loader->add_filter('archive_template', $plugin_public, 'archive_template'); // Load custom archive template for books
 
 	}
 
