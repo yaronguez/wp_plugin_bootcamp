@@ -55,7 +55,7 @@ This branch adds an admin options page using a refactored CMB2 snippet and uses 
 helper method.
 
 ### Step 5
-**Branch:## step_5
+**Branch:** step_5
 This branch reorganizes all the classes into single responsibility classes:
 * Public Classes
  * ````WP_Plugin_Bootcamp_Post_Types````
