@@ -53,3 +53,15 @@ allowing us to migrate ````content-single-books.php```` and ````content-archive-
 **Branch:** step_4
 This branch adds an admin options page using a refactored CMB2 snippet and uses it to modify the CSS of the books page via a static
 helper method.
+
+### Step 5
+**Branch:## step_5
+This branch reorganizes all the classes into single responsibility classes:
+* Public Classes
+ * ````WP_Plugin_Bootcamp_Post_Types````
+ * ````WP_Plugin_Bootcamp_Post_Routing````
+ * ````WP_Plugin_Bootcamp_Post_Scripts````
+ * ````WP_Plugin_Bootcamp_Post_Shortcodes````
+* Admin Classes
+ * ````WP_Plugin_Bootcamp_Metaboxes````
+ * ````WP_Plugin_Bootcamp_Settings````

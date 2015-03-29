@@ -3,7 +3,7 @@
  * CMB2 Theme Options
  * @version 0.1.0
  */
-class WP_Plugin_BootCamp_Admin_Settings {
+class WP_Plugin_BootCamp_Settings {
     /**
      * Instance of this class.
      */

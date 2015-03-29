@@ -20,7 +20,7 @@
  * @subpackage WP_Plugin_BootCamp/admin
  * @author     Yaron Guez <yaron@trestian.com>
  */
-class WP_Plugin_BootCamp_Admin {
+class WP_Plugin_BootCamp_Metaboxes {
 
 	/**
 	 * The ID of this plugin.

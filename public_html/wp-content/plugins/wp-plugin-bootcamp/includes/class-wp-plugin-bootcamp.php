@@ -108,16 +108,16 @@ class WP_Plugin_BootCamp {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-plugin-bootcamp-i18n.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-plugin-bootcamp-admin.php';
+		/** ADMIN CLASSES **/
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-plugin-bootcamp-metaboxes.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wp-plugin-bootcamp-settings.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-plugin-bootcamp-public.php';
+        /** PUBLIC CLASSES */
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-plugin-bootcamp-scripts.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-plugin-bootcamp-post-types.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-plugin-bootcamp-shortcodes.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-plugin-bootcamp-routing.php';
 
         /**
          * Load CMB2 class
@@ -127,7 +127,7 @@ class WP_Plugin_BootCamp {
         /**
          * Load CMB2 Admin Settings class
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wp-plugin-bootcamp-admin-settings.php';
+
 
 		$this->loader = new WP_Plugin_BootCamp_Loader();
 
@@ -160,17 +160,16 @@ class WP_Plugin_BootCamp {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new WP_Plugin_BootCamp_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_metaboxes = new WP_Plugin_BootCamp_Metaboxes( $this->get_plugin_name(), $this->get_version() );
+        $plugin_settings = WP_Plugin_BootCamp_Settings::get_instance();
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-        $this->loader->add_action('cmb2_init', $plugin_admin, 'register_metaboxes');
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_metaboxes, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_metaboxes, 'enqueue_scripts' );
+        $this->loader->add_action('cmb2_init', $plugin_metaboxes, 'register_metaboxes');
 
-        $plugin_admin_settings = WP_Plugin_BootCamp_Admin_Settings::get_instance();
-
-        $this->loader->add_action( 'admin_init', $plugin_admin_settings, 'init' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin_settings, 'add_options_page' );
-        $this->loader->add_action( 'cmb2_init', $plugin_admin_settings, 'add_options_page_metabox' );
+        $this->loader->add_action( 'admin_init', $plugin_settings, 'init' );
+        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_options_page' );
+        $this->loader->add_action( 'cmb2_init', $plugin_settings, 'add_options_page_metabox' );
 	}
 
 	/**
@@ -182,15 +181,18 @@ class WP_Plugin_BootCamp {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new WP_Plugin_BootCamp_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_scripts = new WP_Plugin_BootCamp_Scripts( $this->get_plugin_name(), $this->get_version() );
+        $plugin_post_types = new WP_Plugin_BootCamp_Post_Types( $this->get_plugin_name(), $this->get_version() );
+        $plugin_shortcodes = new WP_Plugin_BootCamp_Shortcodes( $this->get_plugin_name(), $this->get_version() );
+        $plugin_routing = new WP_Plugin_BootCamp_Routing( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-        $this->loader->add_action('init', $plugin_public, 'register_post_types');
-        $this->loader->add_action('init', $plugin_public, 'register_taxonomies');
-        $this->loader->add_action('init', $plugin_public, 'register_shortcodes');
-        $this->loader->add_filter('single_template', $plugin_public, 'single_template'); // Load custom single template for books
-        $this->loader->add_filter('archive_template', $plugin_public, 'archive_template'); // Load custom archive template for books
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_scripts, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_scripts, 'enqueue_scripts' );
+        $this->loader->add_action('init', $plugin_post_types, 'register_post_types');
+        $this->loader->add_action('init', $plugin_post_types, 'register_taxonomies');
+        $this->loader->add_action('init', $plugin_shortcodes, 'register_shortcodes');
+        $this->loader->add_filter('single_template', $plugin_routing, 'single_template'); // Load custom single template for books
+        $this->loader->add_filter('archive_template', $plugin_routing, 'archive_template'); // Load custom archive template for books
 
 	}
 
