@@ -35,6 +35,18 @@ This is the starting point of the tutorial.  We have a 2015 child theme with all
  * ````content-archive-books.php````
  * ````taxonomy-genres.php````
 
+### Step 1
+**Branch:** step_1  
+This step takes the 2015 child theme functions and templates and breaks them out into a simple plugin using a similar structure to [Bill Erickson's Core Functionality plugin](https://github.com/billerickson/Core-Functionality). 
+
+Some basic principles of this approach include the following:
+
+* WordPress plugin header
+* prefixing your functions
+* definitions and calling your plugin directory
+* organizing your plugin files
+* Conditionally including template files
+
 ### Step 2
 **Branch:** step_2
 This branch uses an Object Oriented Design approach to a plugin.  It utilizes the WordPress Plugin Boilerplate 3, http://wppb.io/,
