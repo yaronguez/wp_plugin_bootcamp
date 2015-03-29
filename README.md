@@ -48,3 +48,8 @@ This branch migrates the template files ````single-books.php```` and ````archive
 while allowing theme authors and users to override this markup to better suit their theme by copying the templates back into
 their theme folder.  It then replaces the built in ````get_template_part()```` method with one that checks the plugin first
 allowing us to migrate ````content-single-books.php```` and ````content-archive-books.php```` into the plugin as well.
+
+### Step 4
+**Branch:** step_4
+This branch adds an admin options page using a refactored CMB2 snippet and uses it to modify the CSS of the books page via a static
+helper method.
