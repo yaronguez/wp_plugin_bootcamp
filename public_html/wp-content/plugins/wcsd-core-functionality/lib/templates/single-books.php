@@ -16,7 +16,12 @@ get_header(); ?>
         while ( have_posts() ) : the_post();
 
 
-            get_template_part( 'content', 'single-books' );
+           if(file_exists(get_stylesheet_directory() . '/content-single-books.php')) {
+				include( get_stylesheet_directory() . '/content-single-books.php' );
+			}
+			else{
+				include ( WCSD_DIR . '/lib/templates/content-single-books.php' );
+			}
 
             // If comments are open or we have at least one comment, load up the comment template.
             if ( comments_open() || get_comments_number() ) :

@@ -8,3 +8,4 @@ wp-content/w3tc/
 .DS_Store
 wp-content/w3tc-config/master.php
 .htaccess
+*.sql

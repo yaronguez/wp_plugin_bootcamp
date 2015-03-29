@@ -29,7 +29,12 @@ get_header(); ?>
                  * If you want to override this in a child theme, then include a file
                  * called content-___.php (where ___ is the Post Format name) and that will be used instead.
                  */
-                get_template_part( 'content', 'archive-books' );
+                if(file_exists(get_stylesheet_directory() . '/content-archive-books.php')) {
+					include( get_stylesheet_directory() . '/content-archive-books.php' );
+				}
+				else{
+					include ( WCSD_DIR . '/lib/templates/content-archive-books.php' );
+				}
 
                 // End the loop.
             endwhile;
