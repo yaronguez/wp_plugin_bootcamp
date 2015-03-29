@@ -123,7 +123,7 @@ class WP_Plugin_BootCamp {
          * Load CMB2 class
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/cmb2/init.php';
-        
+
 		$this->loader = new WP_Plugin_BootCamp_Loader();
 
 	}
