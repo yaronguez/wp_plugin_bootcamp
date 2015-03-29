@@ -197,7 +197,7 @@ class WP_Plugin_BootCamp_Public {
 
         ob_start();
         while($query->have_posts()): $query->the_post();
-            get_template_part( 'content', 'archive-books' );
+            WP_Plugin_BootCamp::get_template_part( 'content', 'archive-books' );
         endwhile;
 
         wp_reset_postdata();
